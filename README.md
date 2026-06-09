@@ -21,7 +21,7 @@ Customization of Simple Toon Shader for mobile.
 *  Go to your URP Renderer Data asset
 *  Click "Add Renderer Feature" → select "Custom Texture Blit" or any custom feature
 *  OR create a simple script:
-*  OutlineRenderFeature.cs (optional but recommended for best batching)
+*  I left in the repo a c# example of how to add this feature to the URPasset.
 *  PLEASE, Keep in mind that editing the URP ASSET can be sensitive and if its not properly done can break your project. If you are not sure, DONT perform this extra step.
 
 ### C# code inside repo, called "urp_asset_edit":
