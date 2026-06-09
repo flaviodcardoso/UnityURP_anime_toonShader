@@ -103,7 +103,7 @@
         Pass 
         {
             Name "Outline"
-            // OPTIMIZATION: Adding LightMode tag for proper SRP batching
+            // OPTIMIZATION: Adding LightMode tag for proper SRP batching. IMPORTANT, BY DEFAULT is outline, so its counting yo will add the render feature-edit the URPasset. If you won't touch the URP asset, change the tag "Outline"  for "SRPDefaultUnlit". 
             Tags 
             {
                 "LightMode" = "Outline"
