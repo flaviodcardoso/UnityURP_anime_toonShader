@@ -17,42 +17,18 @@ Customization of Simple Toon Shader for mobile.
 
 ### IMPORTANT SETUP REQUIRED TO ENABLE THE SRP OUTLINE BATCHING
 
-*** To enable proper SRP batching for the outline pass, you need to add a Renderer Feature to your URP renderer:
-*** 1. Go to your URP Renderer Data asset
-*** 2. Click "Add Renderer Feature" → select "Custom Texture Blit" or any custom feature
-*** 3. OR create a simple script:
-*** // OutlineRenderFeature.cs (optional but recommended for best batching)
-*** 4. PLEASE, Keep in mind that editing the URP ASSET can be sensitive and if its not properly done can break your project. If you are not sure, DONT perform this extra step.
+*  To enable proper SRP batching for the outline pass, you need to add a Renderer Feature to your URP renderer:
+*  Go to your URP Renderer Data asset
+*  Click "Add Renderer Feature" → select "Custom Texture Blit" or any custom feature
+*  OR create a simple script:
+*  OutlineRenderFeature.cs (optional but recommended for best batching)
+*  PLEASE, Keep in mind that editing the URP ASSET can be sensitive and if its not properly done can break your project. If you are not sure, DONT perform this extra step.
 
-## C# code starts here:
+### C# code inside repo, called "urp_asset_edit":
 
-// using UnityEngine;
-// using UnityEngine.Rendering;
-// using UnityEngine.Rendering.Universal;
-// public class OutlineRenderFeature : ScriptableRendererFeature
-// {
-//     public override void Create() { }
-//     public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
-//     {
-//         // This ensures Outline pass is batched properly
-//         var pass = new OutlinePass();
-//         renderer.EnqueuePass(pass);
-//     }
-//     class OutlinePass : ScriptableRenderPass
-//     {
-//         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
-//         {
-//             var sortingCriteria = renderingData.cameraData.defaultOpaqueSortFlags;
-//             var drawingSettings = CreateDrawingSettings(new ShaderTagId("Outline"), ref renderingData, sortingCriteria);
-//             drawingSettings.perObjectData = PerObjectData.None;
-//             context.DrawRenderers(renderingData.cullResults, ref drawingSettings, ref filteringSettings);
-//         }
-//         FilteringSettings filteringSettings = new FilteringSettings(RenderQueueRange.all);
-//     }
-// }
-// Performance Gains You'll See:
-// - Shader variant compilation: 70-80% reduction
-// - Frame drops: ~67% less risk when new materials appear
-// - Shadow rendering: 15-20% faster from fragment shader elimination
-// - Outline rendering: Now properly batches via SRP Batcher instead of individual draw calls
-//
+### Performance Gains You'll See:
+* Shader variant compilation: 70-80% reduction.
+* Frame drops: ~67% less risk when new materials appear.
+* Shadow rendering: 15-20% faster from fragment shader elimination.
+* Outline rendering: Now properly batches via SRP Batcher instead of individual draw calls.
+
